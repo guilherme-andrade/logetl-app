@@ -66,10 +66,16 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    acts-as-taggable-on (9.0.1)
+      activerecord (>= 6.0, < 7.1)
+    acts_as_tenant (0.6.1)
+      rails (>= 5.2)
+      request_store (>= 1.0.5)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
+    bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -93,6 +99,10 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsonapi-resources (0.10.7)
+      activerecord (>= 4.1)
+      concurrent-ruby
+      railties (>= 4.1)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -123,6 +133,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.4)
+    rack-cors (2.0.1)
+      rack (>= 2.0.0)
     rack-proxy (0.7.6)
       rack
     rack-test (2.1.0)
@@ -160,21 +172,18 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
+    redis (4.5.1)
     reline (0.3.3)
       io-console (~> 0.5)
+    request_store (1.5.1)
+      rack (>= 1.4)
+    rolify (6.0.1)
     semantic_range (3.0.0)
     shakapacker (6.6.0)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    sprockets (4.2.0)
-      concurrent-ruby (~> 1.0)
-      rack (>= 2.2.4, < 4)
-    sprockets-rails (3.4.2)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
-      sprockets (>= 3.0.0)
     thor (1.2.1)
     tilt (2.1.0)
     timeout (0.3.2)
@@ -194,15 +203,21 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 9.0)
+  acts_as_tenant (~> 0.6.0)
+  bcrypt
   bootsnap
   debug
   jbuilder
+  jsonapi-resources (~> 0.10.5)
   pg (~> 1.1)
   puma (~> 5.0)
+  rack-cors
   rails (~> 7.0.4, >= 7.0.4.3)
   react-rails (= 2.6)
+  redis (~> 4.0)
+  rolify (~> 6.0.1)
   shakapacker (= 6.6)
-  sprockets-rails
   tzinfo-data
   web-console
 

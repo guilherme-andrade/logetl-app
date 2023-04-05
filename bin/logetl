@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'logetl'
+
+# Parse the command line options
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: logetl [options]"
+
+  opts.on("-p", "--process NAME", "The command to run") do |process|
+    options[:process] = process
+  end
+end.parse!
+
+# Start the process and get its PID
+IO.popen(options[:process]) do |io|
+  io.each_line do |line|
+    logetl = Logetl::Processor.new
+    logetl.call(line)
+  end
+end

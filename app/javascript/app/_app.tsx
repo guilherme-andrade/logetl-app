@@ -1,12 +1,20 @@
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
+import { ApiClient, ApiProvider } from "jsonapi-react";
+import { baseUrl, schema } from "../api";
+
+const client = new ApiClient({
+  url: baseUrl,
+  schema,
+});
 
 const app = (Component) => (props) => {
-  // 2. Wrap ChakraProvider at the root of your app
   return (
-    <ChakraProvider>
-      <Component {...props} />
-    </ChakraProvider>
+    <ApiProvider client={client}>
+      <ChakraProvider>
+        <Component {...props} />
+      </ChakraProvider>
+    </ApiProvider>
   );
 };
 
