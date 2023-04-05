@@ -9,6 +9,7 @@ gem "acts-as-taggable-on", "~> 9.0"
 gem 'acts_as_tenant', "~> 0.6.0"
 gem "bcrypt"
 gem "bootsnap", require: false
+gem "dry-logic"
 gem "jbuilder"
 gem "jsonapi-resources", "~> 0.10.5"
 gem "pg", "~> 1.1"
