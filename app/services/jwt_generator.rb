@@ -1,6 +1,6 @@
 require "jwt"
 
-class JWTTokenGenerator
+class JWTGenerator
   def encode(payload)
     JWT.encode(payload, secret, "HS256")
   end

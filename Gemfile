@@ -10,6 +10,8 @@ gem 'acts_as_tenant', "~> 0.6.0"
 gem "bcrypt"
 gem "bootsnap", require: false
 gem "dotenv-rails"
+gem "dry-monads"
+gem "dry-rails"
 gem "jbuilder"
 gem "jsonapi-resources", "~> 0.10.5"
 gem "jwt"
@@ -23,6 +25,7 @@ gem "ruby-openai"
 gem "shakapacker", "= 6.6"
 gem "treetop"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "use_cases"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

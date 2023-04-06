@@ -91,6 +91,56 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    dry-auto_inject (1.0.1)
+      dry-core (~> 1.0)
+      zeitwerk (~> 2.6)
+    dry-configurable (1.0.1)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-core (1.0.0)
+      concurrent-ruby (~> 1.0)
+      zeitwerk (~> 2.6)
+    dry-inflector (1.0.0)
+    dry-initializer (3.1.1)
+    dry-logic (1.5.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-matcher (1.0.0)
+      dry-core (~> 1.0, < 2)
+    dry-monads (1.6.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-rails (0.7.0)
+      dry-schema (~> 1.7)
+      dry-system (~> 1.0, < 2)
+      dry-validation (~> 1.5)
+    dry-schema (1.13.0)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 1.0, >= 1.0.1)
+      dry-core (~> 1.0, < 2)
+      dry-initializer (~> 3.0)
+      dry-logic (>= 1.5, < 2)
+      dry-types (>= 1.7, < 2)
+      zeitwerk (~> 2.6)
+    dry-system (1.0.1)
+      dry-auto_inject (~> 1.0, < 2)
+      dry-configurable (~> 1.0, < 2)
+      dry-core (~> 1.0, < 2)
+      dry-inflector (~> 1.0, < 2)
+    dry-types (1.7.1)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0)
+      dry-inflector (~> 1.0)
+      dry-logic (~> 1.4)
+      zeitwerk (~> 2.6)
+    dry-validation (1.10.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0, < 2)
+      dry-initializer (~> 3.0)
+      dry-schema (>= 1.12, < 2)
+      zeitwerk (~> 2.6)
     erubi (1.12.0)
     execjs (2.8.1)
     globalid (1.1.0)
@@ -110,6 +160,7 @@ GEM
       activerecord (>= 4.1)
       concurrent-ruby
       railties (>= 4.1)
+    jwt (2.7.0)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -202,6 +253,11 @@ GEM
       polyglot (~> 0.3)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    use_cases (2.0.7)
+      activesupport (>= 5.1)
+      dry-matcher (>= 0.8.1)
+      dry-monads (>= 1.0.0)
+      dry-validation (>= 0.11.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -222,8 +278,11 @@ DEPENDENCIES
   bootsnap
   debug
   dotenv-rails
+  dry-monads
+  dry-rails
   jbuilder
   jsonapi-resources (~> 0.10.5)
+  jwt
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
@@ -235,6 +294,7 @@ DEPENDENCIES
   shakapacker (= 6.6)
   treetop
   tzinfo-data
+  use_cases
   web-console
 
 RUBY VERSION
