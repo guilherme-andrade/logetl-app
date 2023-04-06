@@ -9,16 +9,19 @@ gem "acts-as-taggable-on", "~> 9.0"
 gem 'acts_as_tenant', "~> 0.6.0"
 gem "bcrypt"
 gem "bootsnap", require: false
-gem "dry-logic"
+gem "dotenv-rails"
 gem "jbuilder"
 gem "jsonapi-resources", "~> 0.10.5"
+gem "jwt"
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 gem "rack-cors"
 gem "react-rails", "= 2.6"
 gem "redis", "~> 4.0"
 gem "rolify", "~> 6.0.1"
+gem "ruby-openai"
 gem "shakapacker", "= 6.6"
+gem "treetop"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 group :development, :test do

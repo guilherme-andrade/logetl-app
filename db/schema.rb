@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_05_224700) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_06_200347) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -19,6 +19,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_224700) do
   create_table "accounts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "logfiles", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "name"
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,8 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_224700) do
   end
 
   create_table "queries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.json "ast", default: {}, null: false
-    t.json "extractor_ast", default: {}, null: false
+    t.text "selector_regex", null: false
     t.string "title", null: false
     t.string "slug", null: false
     t.uuid "account_id", null: false
@@ -92,14 +100,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_224700) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "transformations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "triggers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "extractor_regex", null: false
     t.string "title", null: false
     t.string "slug", null: false
-    t.text "script", null: false
+    t.uuid "query_id", null: false
     t.uuid "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_transformations_on_account_id"
+    t.index ["account_id"], name: "index_triggers_on_account_id"
+    t.index ["query_id"], name: "index_triggers_on_query_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -117,5 +127,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_224700) do
   add_foreign_key "members", "users"
   add_foreign_key "queries", "accounts"
   add_foreign_key "taggings", "tags"
-  add_foreign_key "transformations", "accounts"
+  add_foreign_key "triggers", "accounts"
+  add_foreign_key "triggers", "queries"
 end
