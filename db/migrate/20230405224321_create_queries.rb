@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateQueries < ActiveRecord::Migration[7.0]
   def change
     create_table :queries, id: :uuid, default: 'gen_random_uuid()' do |t|

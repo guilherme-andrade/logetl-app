@@ -1,0 +1,22 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-thread_safety
+
+AllCops:
+  Exclude:
+    - db/schema.rb
+    - bin/*
+    - vendor/*
+    - db/migrate/**/*
+
+Metrics/MethodLength:
+  Exclude:
+    - spec/**/*
+  Max: 20
+
+Style/Documentation:
+  Enabled: false
+

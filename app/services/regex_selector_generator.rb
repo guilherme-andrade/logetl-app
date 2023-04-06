@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RegexSelectorGenerator
   attr_reader :ai_client
 
@@ -28,15 +30,16 @@ class RegexSelectorGenerator
     def examples
       [
         {
-          log: "GET /api/v1/users/1 HTTP/1.1",
-          log_list: ["GET /api/v1/users/1 HTTP/1.1", "GET /api/v1/users/2 HTTP/1.1", "GET /homes/3 HTTP/1.1"],
+          log: 'GET /api/v1/users/1 HTTP/1.1',
+          log_list: ['GET /api/v1/users/1 HTTP/1.1', 'GET /api/v1/users/2 HTTP/1.1', 'GET /homes/3 HTTP/1.1'],
           regex: "GET /api/v1/users/\d+\s.+"
         },
         {
-          log: "GET /api/v1/service_offfers/1/accept/2 HTTP/1.1",
-          log_list: ["GET /api/v1/service_offfers/1/accept/2 HTTP/1.1", "GET /api/v1/users/2 HTTP/1.1", "GET /homes/3 HTTP/1.1", "GET /api/v1/service_offfers/1/accept/3 HTTP/1.1 ip=172.453.232.1 user_agent=Chrome/1.0"],
+          log: 'GET /api/v1/service_offfers/1/accept/2 HTTP/1.1',
+          log_list: ['GET /api/v1/service_offfers/1/accept/2 HTTP/1.1', 'GET /api/v1/users/2 HTTP/1.1',
+                     'GET /homes/3 HTTP/1.1', 'GET /api/v1/service_offfers/1/accept/3 HTTP/1.1 ip=172.453.232.1 user_agent=Chrome/1.0'],
           regex: "GET /api/v1/service_offfers/\d+/accept/\d+\s.+"
-        },
+        }
       ]
     end
 

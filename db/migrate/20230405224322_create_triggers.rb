@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTriggers < ActiveRecord::Migration[7.0]
   def change
     create_table :triggers, id: :uuid, default: 'gen_random_uuid()' do |t|

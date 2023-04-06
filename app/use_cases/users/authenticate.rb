@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Users
   class Authenticate
     include Dry::Monads[:result]
@@ -5,7 +7,7 @@ module Users
     def call(email:, password:)
       user = User.find_by(email: email)
 
-      if user && user.authenticate(password)
+      if user&.authenticate(password)
         token_generator = JWTGenerator.new
         token = token_generator.encode(user_id: user.id)
 

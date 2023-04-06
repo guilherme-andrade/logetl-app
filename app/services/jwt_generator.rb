@@ -1,12 +1,14 @@
-require "jwt"
+# frozen_string_literal: true
+
+require 'jwt'
 
 class JWTGenerator
   def encode(payload)
-    JWT.encode(payload, secret, "HS256")
+    JWT.encode(payload, secret, 'HS256')
   end
 
   def decode(token)
-    JWT.decode(token, secret, true, { algorithm: "HS256" }).first
+    JWT.decode(token, secret, true, { algorithm: 'HS256' }).first
   end
 
   private

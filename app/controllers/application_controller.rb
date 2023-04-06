@@ -1,5 +1,4 @@
-class ApplicationController < ActionController::Base
-  include JSONAPI::ActsAsResourceController
+# frozen_string_literal: true
 
-  protect_from_forgery with: :null_session
+class ApplicationController < ActionController::Base
 end
