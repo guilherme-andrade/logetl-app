@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module API
-  class LogfilesController < PrivateController
+  class LogfilesController < TenantedController
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module API
-  class QueriesController < PrivateController
+  class QueriesController < TenantedController
   end
 end

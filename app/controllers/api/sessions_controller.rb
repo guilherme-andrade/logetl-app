@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module API
-  class SessionsController < ApplicationController
+  class SessionsController < BaseController
     def create
       resolve('users.authenticate').call(params) do |m|
         m.success do |user:, token:|

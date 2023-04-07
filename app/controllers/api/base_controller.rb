@@ -4,7 +4,7 @@ module API
   class BaseController < ApplicationController
     include JSONAPI::ActsAsResourceController
 
-    protect_from_forgery with: :null_session
+    skip_before_action :verify_authenticity_token
 
     def context
       { current_user: current_user }

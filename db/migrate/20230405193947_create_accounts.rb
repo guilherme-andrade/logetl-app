@@ -5,6 +5,7 @@ class CreateAccounts < ActiveRecord::Migration[7.0]
     create_table :accounts, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.string :name, null: false
       t.string :slug, null: false
+      t.string :subdomain, null: false
 
       t.timestamps
     end
