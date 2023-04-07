@@ -8,7 +8,7 @@ class RegexSelectorGenerator
   end
 
   def generate(log:)
-    prompter = Prompter.new(example_file: Rails.root.join('data/prompts/regex_selector_examples.json'))
+    prompter = AI::Prompter.new(example_file: Rails.root.join('data/prompts/regex_selector_examples.json'))
 
     prompt = prompter.generate(log: log, properties: properties) do |example|
       <<~PROMPT
