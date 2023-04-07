@@ -1,0 +1,5 @@
+"2020-05-07T10:13:51Z 192.168.1.100 - [GET] Requesting /assets/stylesheets/main.css from Rails server"
+"2020-05-07T10:15:02Z 192.168.1.100 - [GET] Requesting /pages/index.html?category=featured&sort_by=name from Rails server"
+"2020-05-07T10:16:45Z 192.168.1.100 - [POST] Requesting /action/fetch-data from Rails server"
+"2020-05-07T10:21:17Z 192.168.1.100 - [GET] Requesting /data/all-items.json from Rails server"
+"2020-05-07T10:25:38Z 192.168.1.100 - [POST] Requesting /user/login?username=jdoe&password=12345 from Rails server"

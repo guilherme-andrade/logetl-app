@@ -1,0 +1,6 @@
+[INFO] (2020-05-01 10:20:58) Request method='GET', URL='/api/v1/foo', params={'page': '1'}
+[DEBUG] (2020-05-01 10:21:02) Request method='POST', URL='/api/v2/bar/123', params={'type': 'green', 'status': 'active'}
+[INFO] (2020-05-01 10:21:12) Request method='GET', URL='/api/v1/foo/abc', params={'page': '2', 'start_date': '2020-05-01', 'end_date': '2020-05-31'}
+[DEBUG] (2020-05-01 10:21:21) Request method='POST', URL='/api/v1/baz', params={'name': 'John Doe', 'age': '35'}
+[INFO] (2020-05-01 10:22:17) Request method='GET', URL='/api/v2/bar', params={'q': 'example query'}
+[DEBUG] (2020-05-01 10:22:35) Request method='PUT', URL='/api/v2/bar/123', params={'status': 'inactive'}

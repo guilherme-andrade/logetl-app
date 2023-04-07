@@ -1,0 +1,8 @@
+[08/Mar/2020:07:50:02 -0400] "GET /sales?date=2021-03-21&vendor=Target HTTP/1.1" 200
+[08/Mar/2020:07:52:27 -0400] "PUT /items/a150f HTTP/1.1" 204 
+[08/Mar/2020:07:55:04 -0400] "POST /accounts/ HTTP/1.1" 201 
+[08/Mar/2020:07:57:32 -0400] "OPTIONS /items?type=clothing HTTP/1.1" 200 
+[08/Mar/2020:08:01:08 -0400] "GET /inventory/taxes?status=archived&sort=date%20asc HTTP/1.1" 200 
+[08/Mar/2020:08:04:45 -0400] "DELETE /roles/HTTP/1.1" 204 
+[08/Mar/2020:08:07:11 -0400] "POST /parent/child/ HTTP/1.1" 201 
+[08/Mar/2020:08:10:51 -0400] "GET /options?type=size&value=XL HTTP/1.1" 200
