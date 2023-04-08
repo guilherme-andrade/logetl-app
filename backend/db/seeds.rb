@@ -9,4 +9,8 @@ Query.create!(selector_regex: ".*", title: "All", slug: "all", account: acme)
 
 Trigger.create!(extractor_regex: ".*", title: "All", slug: "all", query_id: Query.first.id, account: acme)
 
-Logfile.create!(start_date: 1.day.ago.beginning_of_day, end_date: Time.zone.today, name: "log1", slug: "log1", account: acme)
+
+Dir[Rails.root.join('data/fake_logs/*.txt')].each do |file|
+  logfile = Logfile.create!(start_date: 1.day.ago.beginning_of_day, end_date: Time.zone.today, name: file, account: acme)
+  raise unless logfile.file.attach(io: File.open(file), filename: File.basename(file))
+end
