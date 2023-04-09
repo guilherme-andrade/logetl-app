@@ -47,7 +47,7 @@ const Page = () => {
             size="sm"
             colorScheme="black"
             as={NextLink}
-            href="/dashboard/logs"
+            href="/dashboard/queries/new"
           >
             New Query
           </Button>
