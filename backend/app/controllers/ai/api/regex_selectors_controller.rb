@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AI
   module API
     class RegexSelectorsController < ::API::PrivateController
@@ -5,7 +7,7 @@ module AI
         generator = RegexSelectorGenerator.new
         result = generator.generate(log: regex_selector_params[:log], log_list: regex_selector_params[:log_list])
 
-        render json: { result: result }
+        render json: { result: }
       end
 
       private

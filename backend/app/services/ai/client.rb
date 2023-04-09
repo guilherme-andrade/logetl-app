@@ -11,11 +11,9 @@ module AI
     def complete(**options)
       response = @client.completions(parameters: default_options.merge(options))
 
-      if response["choices"].empty? || response["choices"].first['text'].blank?
-        raise "No response from OpenAI"
-      end
+      raise 'No response from OpenAI' if response['choices'].empty? || response['choices'].first['text'].blank?
 
-      response["choices"].first['text']
+      response['choices'].first['text']
     end
 
     def default_options
@@ -24,7 +22,7 @@ module AI
         max_tokens: 4000,
         temperature: 1,
         top_p: 1,
-        stop: ["AI:"]
+        stop: ['AI:']
       }
     end
   end

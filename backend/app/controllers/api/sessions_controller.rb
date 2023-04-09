@@ -5,7 +5,7 @@ module API
     def create
       resolve('users.authenticate').call(params) do |m|
         m.success do |user:, token:|
-          render json: { user: user, token: token }, status: :created
+          render json: { user:, token: }, status: :created
         end
 
         m.failure :invalid_credentials do

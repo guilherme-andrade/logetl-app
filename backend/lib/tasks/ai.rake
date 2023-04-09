@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 namespace :ai do
   task fake_logs: :environment do
     require 'openai'
 
     # List of languages/frameworks to generate logs for
-    languages = ["Ruby on Rails", "Python Django", "Node.js", "Java Spring Boot", "PHP Laravel", "ASP.NET"]
+    languages = ['Ruby on Rails', 'Python Django', 'Node.js', 'Java Spring Boot', 'PHP Laravel', 'ASP.NET']
 
     # Create a client using the OpenAI API key
     client = AI::Client.new
@@ -14,7 +16,7 @@ namespace :ai do
       prompt = "Generate random application logs that look real and sequenced logically for a web server in #{lang}.\nMake sure the log examples include different kinds of requests with higher degrees of complexity, including different request methods and param types.\n AI:"
 
       # Generate logs using the OpenAI API
-      response = client.complete(prompt: prompt)
+      response = client.complete(prompt:)
 
       text = response
 

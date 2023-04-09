@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "dry/matcher/result_matcher"
+require 'dry/matcher/result_matcher'
 
 module Users
   class Authenticate
@@ -14,7 +14,7 @@ module Users
         token_generator = JWTGenerator.new
         token = token_generator.encode(user_id: user.id)
 
-        Success(user: user, token: token)
+        Success(user:, token:)
       else
         Failure(:invalid_credentials)
       end

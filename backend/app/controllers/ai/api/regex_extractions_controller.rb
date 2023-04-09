@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
 module AI
   module API
     class RegexExtractionsController < ::API::PrivateController
       def create
         generator = RegexExtractorGenerator.new
-        result = generator.generate(log: regex_extraction_params[:log], properties: regex_extraction_params[:properties])
+        result = generator.generate(log: regex_extraction_params[:log],
+                                    properties: regex_extraction_params[:properties])
 
-        render json: { result: result }
+        render json: { result: }
       end
 
       private

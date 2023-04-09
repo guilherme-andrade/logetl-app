@@ -10,13 +10,13 @@ class RegexExtractorGenerator
   def generate(log:, properties:)
     prompter = Prompter.new(example_file: Rails.root.join('data/prompts/regex_extractor_examples.json'))
 
-    prompt = prompter.generate(log: log, properties: properties) do |example|
+    prompt = prompter.generate(log:, properties:) do |example|
       <<~PROMPT
         input: extract properties [#{example[:properties]}] from the log [#{example[:log]}]
         answer: #{example[:regex]}
       PROMPT
     end
 
-    ai_client.complete(prompt: prompt, max_tokens: 400, temperature: 0)
+    ai_client.complete(prompt:, max_tokens: 400, temperature: 0)
   end
 end
