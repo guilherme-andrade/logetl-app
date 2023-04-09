@@ -22,7 +22,7 @@ module LogetlApp
     config.generators.system_tests = nil
     config.generators { |g| g.orm :active_record, primary_key_type: :uuid }
 
-    excluded_routes = ->(env) { !env["PATH_INFO"].match(%r{^/api}) }
+    excluded_routes = ->(env) { !env["PATH_INFO"].match(%r{api}) }
     config.middleware.use OliveBranch::Middleware,
                           inflection:       "camel",
                           exclude_params:   excluded_routes,

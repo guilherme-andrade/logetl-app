@@ -4,4 +4,5 @@ export { TbExternalLink as ExternalLink } from "react-icons/tb";
 export { TbPlus as Plus } from "react-icons/tb";
 export { TbDeviceFloppy as Save } from "react-icons/tb";
 export { TbChevronDown as ChevronDown } from "react-icons/tb";
+export { TbChevronUp as ChevronUp } from "react-icons/tb";
 export { TbFolder as Folder } from "react-icons/tb";

@@ -11,4 +11,11 @@ Rails.application.routes.draw do
     jsonapi_resources :logfiles
     jsonapi_resources :triggers
   end
+
+  namespace :ai, defaults: { format: :json } do
+    namespace :api do
+      resources :regex_selectors, only: %i[create]
+      resources :regex_extractions, only: %i[create]
+    end
+  end
 end

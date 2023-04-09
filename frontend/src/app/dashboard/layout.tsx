@@ -25,8 +25,8 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <Grid
       templateAreas={`"header header" "sidebar main"`}
-      gridTemplateRows={"100px 1fr"}
-      gridTemplateColumns={"200px 1fr"}
+      gridTemplateRows={"70px 1fr"}
+      gridTemplateColumns={"80px 1fr"}
       h="100vh"
       w="100vw"
       bg="white"

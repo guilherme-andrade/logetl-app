@@ -7,10 +7,10 @@ class RegexSelectorGenerator
     @ai_client = AI::Client.new
   end
 
-  def generate(log:)
+  def generate(log:, log_list:)
     prompter = AI::Prompter.new(example_file: Rails.root.join('data/prompts/regex_selector_examples.json'))
 
-    prompt = prompter.generate(log: log, properties: properties) do |example|
+    prompt = prompter.generate(log: log, log_list: log_list) do |example|
       <<~PROMPT
         input: output a regex to match log [#{example[:log]}] from list [#{example[:log_list].join('|')}]
         answer: #{example[:regex]}

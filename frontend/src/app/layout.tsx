@@ -1,4 +1,5 @@
-import { Provider as ApiProvider } from "@/modules/api/Provider";
+import { AiProvider } from "@/modules/ai/Provider";
+import { DataProvider } from "@/modules/api/Provider";
 import { UIProvider } from "@/modules/ui/Provider";
 
 export const metadata = {
@@ -15,7 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <UIProvider>
-          <ApiProvider>{children}</ApiProvider>
+          <DataProvider>
+            <AiProvider>{children}</AiProvider>
+          </DataProvider>
         </UIProvider>
       </body>
     </html>
