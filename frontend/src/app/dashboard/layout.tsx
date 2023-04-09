@@ -1,7 +1,18 @@
 "use client";
 
 import { ReactNode, FC } from "react";
-import { Grid, GridItem } from "@/modules/ui";
+import {
+  Grid,
+  GridItem,
+  List,
+  ListItem,
+  Link,
+  Icon,
+  Box,
+  VStack,
+} from "@/modules/ui";
+import NextLink from "next/link";
+import { CodePlus, TimelineEventPlus } from "@/modules/ui/icons";
 
 interface Props {
   children: ReactNode;
@@ -12,7 +23,7 @@ const Layout: FC<Props> = ({ children }) => {
     <Grid
       templateAreas={`"nav header" "nav main" "nav main"`}
       gridTemplateRows={"50px 1fr 30px"}
-      gridTemplateColumns={"70px 1fr"}
+      gridTemplateColumns={"50px 1fr"}
       h="100vh"
       w="100vw"
       bg="white"
@@ -35,10 +46,25 @@ const Layout: FC<Props> = ({ children }) => {
         alignItems="center"
         justifyContent="space-between"
         flexDirection="column"
-        px="4"
         py="3"
+        color="white"
+        bg="black"
       >
-        Nav
+        <VStack>
+          <Box>logo</Box>
+          <List as="nav">
+            <ListItem py="3" px="2">
+              <Link as={NextLink} href="/dashboard/queries">
+                <Icon as={CodePlus} />
+              </Link>
+            </ListItem>
+            <ListItem py="3" px="2">
+              <Link as={NextLink} href="/dashboard/queries">
+                <Icon as={TimelineEventPlus} />
+              </Link>
+            </ListItem>
+          </List>
+        </VStack>
       </GridItem>
       <GridItem pl="2" area={"main"} p="8" pt="16">
         {children}
