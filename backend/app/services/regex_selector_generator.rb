@@ -12,7 +12,7 @@ class RegexSelectorGenerator
 
     prompt = prompter.generate(log: log, properties: properties) do |example|
       <<~PROMPT
-        input: extract log [#{example[:log]}] from [#{example[:log_list].join('|')}]
+        input: output a regex to match log [#{example[:log]}] from list [#{example[:log_list].join('|')}]
         answer: #{example[:regex]}
       PROMPT
     end

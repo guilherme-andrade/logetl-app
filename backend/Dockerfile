@@ -1,4 +1,4 @@
-FROM ruby:3.2.0-slim
+FROM ruby:3.1.0-slim
 
 ENV PORT 4000
 

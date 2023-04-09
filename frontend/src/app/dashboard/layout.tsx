@@ -10,6 +10,9 @@ import {
   Icon,
   Box,
   VStack,
+  HStack,
+  Flex,
+  UnorderedList,
 } from "@/modules/ui";
 import NextLink from "next/link";
 import { CodePlus, TimelineEventPlus } from "@/modules/ui/icons";
@@ -21,12 +24,13 @@ interface Props {
 const Layout: FC<Props> = ({ children }) => {
   return (
     <Grid
-      templateAreas={`"nav header" "nav main" "nav main"`}
-      gridTemplateRows={"50px 1fr 30px"}
-      gridTemplateColumns={"50px 1fr"}
+      templateAreas={`"header header" "sidebar main"`}
+      gridTemplateRows={"100px 1fr"}
+      gridTemplateColumns={"200px 1fr"}
       h="100vh"
       w="100vw"
       bg="white"
+      overflow="hidden"
     >
       <GridItem
         pl="2"
@@ -36,37 +40,48 @@ const Layout: FC<Props> = ({ children }) => {
         justifyContent="space-between"
         py="4"
         px="8"
+        borderBottomWidth="1px"
       >
-        Header
+        <Flex>
+          <Box>logo</Box>
+          <List as={Flex}>
+            <ListItem py="3" px="2">
+              <Link as={NextLink} href="/dashboard/queries" px="5">
+                Queries
+              </Link>
+            </ListItem>
+            <ListItem py="3" px="2">
+              <Link as={NextLink} href="/dashboard/triggers" px="5">
+                Triggers
+              </Link>
+            </ListItem>
+          </List>
+        </Flex>
       </GridItem>
       <GridItem
         pl="2"
-        area={"nav"}
+        area={"sidebar"}
         display="flex"
         alignItems="center"
         justifyContent="space-between"
         flexDirection="column"
         py="3"
-        color="white"
-        bg="black"
+        borderRightWidth="1px"
       >
-        <VStack>
-          <Box>logo</Box>
-          <List as="nav">
-            <ListItem py="3" px="2">
-              <Link as={NextLink} href="/dashboard/queries">
-                <Icon as={CodePlus} />
-              </Link>
-            </ListItem>
-            <ListItem py="3" px="2">
-              <Link as={NextLink} href="/dashboard/queries">
-                <Icon as={TimelineEventPlus} />
-              </Link>
-            </ListItem>
-          </List>
-        </VStack>
+        <List>
+          <ListItem py="3" px="2">
+            <Link as={NextLink} href="/dashboard/queries" px="5">
+              Queries
+            </Link>
+          </ListItem>
+          <ListItem py="3" px="2">
+            <Link as={NextLink} href="/dashboard/triggers" px="5">
+              Triggers
+            </Link>
+          </ListItem>
+        </List>
       </GridItem>
-      <GridItem pl="2" area={"main"} p="8" pt="16">
+      <GridItem area={"main"} overflowY="scroll">
         {children}
       </GridItem>
     </Grid>
