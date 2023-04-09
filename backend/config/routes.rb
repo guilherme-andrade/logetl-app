@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'pages#home'
-
   namespace :api, defaults: { format: :json } do
     resources :sessions, only: %i[create]
 
@@ -13,6 +11,4 @@ Rails.application.routes.draw do
     jsonapi_resources :logfiles
     jsonapi_resources :triggers
   end
-
-  match '*path', to: 'pages#home', via: :all
 end

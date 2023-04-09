@@ -13,6 +13,6 @@
     "allowSyntheticDefaultImports": true
   },
   "exclude": ["**/*.spec.ts", "node_modules", "vendor", "public"],
-  "include": ["**/app/javascript/**/*.ts", "**/app/javascript/**/*.tsx", "app/javascript/application.js"],
+  "include": ["**/app/javascript/**/*.ts", "**/app/javascript/**/*.tsx", "server/app/javascript/application.js"],
   "compileOnSave": false
 }
