@@ -3,14 +3,19 @@
 import { useQuery } from "@/modules/api";
 import {
   Box,
-  Card,
   Grid,
   GridItem,
   Heading,
   Spinner,
   Text,
   VStack,
+  Card,
+  Flex,
+  Button,
+  Icon,
 } from "@/modules/ui";
+
+const GRID = "35px 2fr 1fr 1fr 1fr 30px";
 
 const Page = () => {
   const { data, error, isLoading } = useQuery<
@@ -27,32 +32,68 @@ const Page = () => {
 
   return (
     <>
-      <Box mb="8">
-        <Heading size="md" mb="2">
-          Your Queries
-        </Heading>
-        <Text>You have no queries yet.</Text>
-      </Box>
+      <Flex justifyContent="space-between" mb="8">
+        <Box>
+          <Heading size="md" w="fit-content" mb="6" pb="4">
+            Your Queries
+          </Heading>
+        </Box>
+        <Box>
+          <Button size="sm" colorScheme="black">
+            New Query
+          </Button>
+        </Box>
+      </Flex>
 
       <VStack spacing="2">
         <Grid
           display="inline-grid"
-          gridTemplateColumns={"1fr 300px"}
+          gridTemplateColumns={GRID}
           w="full"
           textTransform="uppercase"
           fontSize="2xs"
           fontWeight="bold"
           color="gray.500"
+          borderBottomWidth="1px"
+          borderColor="gray.200"
+          pb="4"
         >
-          <GridItem px="4">Title</GridItem>
-          <GridItem px="4">Selector</GridItem>
+          <GridItem />
+          <GridItem>Title</GridItem>
+          <GridItem>Matches</GridItem>
+          <GridItem>% of logs</GridItem>
+          <GridItem>Events Triggered</GridItem>
         </Grid>
 
         {data?.map((query) => (
-          <Card shadow="none" borderWidth="1px" w="full" key={query.id}>
-            <Grid display="inline-grid" gridTemplateColumns={"1fr 300px"}>
-              <GridItem p="4">{query.title}</GridItem>
-              <GridItem p="4">{query.selectorRegex}</GridItem>
+          <Card
+            shadow="none"
+            border="none"
+            w="full"
+            key={query.id}
+            rounded="none"
+          >
+            <Grid
+              display="inline-grid"
+              gridTemplateColumns={GRID}
+              cursor="pointer"
+            >
+              <GridItem py="4" display="flex" alignItems="center">
+                <Box bg="green.300" h="5px" w="5px" rounded="50%" />
+              </GridItem>
+              <GridItem py="4">
+                <Text fontWeight="bold">{query.title}</Text>
+              </GridItem>
+              <GridItem py="4">
+                <Text>{query.title}</Text>
+              </GridItem>
+              <GridItem py="4">
+                <Text>{query.title}</Text>
+              </GridItem>
+              <GridItem py="4">
+                <Text>{query.title}</Text>
+              </GridItem>
+              <GridItem py="4">...</GridItem>
             </Grid>
           </Card>
         ))}

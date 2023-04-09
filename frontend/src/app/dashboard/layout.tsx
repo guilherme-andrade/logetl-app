@@ -20,8 +20,6 @@ const Layout: FC<Props> = ({ children }) => {
       <GridItem
         pl="2"
         area={"header"}
-        borderBottomWidth="1px"
-        borderColor="gray.100"
         display="flex"
         alignItems="center"
         justifyContent="space-between"
@@ -33,8 +31,6 @@ const Layout: FC<Props> = ({ children }) => {
       <GridItem
         pl="2"
         area={"nav"}
-        borderRightWidth="1px"
-        borderColor="gray.100"
         display="flex"
         alignItems="center"
         justifyContent="space-between"
