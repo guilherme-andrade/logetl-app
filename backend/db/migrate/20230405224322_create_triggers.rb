@@ -8,6 +8,7 @@ class CreateTriggers < ActiveRecord::Migration[7.0]
       t.string :slug, null: false
       t.references :query, null: false, foreign_key: true, type: :uuid
       t.references :account, null: false, foreign_key: true, type: :uuid
+      t.boolean :active, null: false, default: true
 
       t.timestamps
     end

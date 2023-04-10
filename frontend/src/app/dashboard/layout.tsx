@@ -25,7 +25,7 @@ const Layout: FC<Props> = ({ children }) => {
     <Grid
       templateAreas={`"header header" "sidebar main"`}
       gridTemplateRows={"40px 1fr"}
-      gridTemplateColumns={"60px 1fr"}
+      gridTemplateColumns={"50px 1fr"}
       h="100vh"
       w="100vw"
       overflow="hidden"
@@ -103,12 +103,12 @@ const Layout: FC<Props> = ({ children }) => {
         bg="gray.900"
       >
         <List>
-          <ListItem py="2">
+          <ListItem py="3">
             <Link as={NextLink} href="/dashboard/queries">
               <Icon as={CodePlus} />
             </Link>
           </ListItem>
-          <ListItem py="2">
+          <ListItem py="3">
             <Link as={NextLink} href="/dashboard/triggers">
               <Icon as={TimelineEventPlus} />
             </Link>
