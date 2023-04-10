@@ -13,7 +13,6 @@ import {
   Flex,
   Button,
   HStack,
-  LinkOverlay
 } from "@/modules/ui";
 import NextLink from "next/link";
 

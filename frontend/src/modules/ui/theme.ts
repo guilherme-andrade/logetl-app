@@ -34,6 +34,13 @@ export const theme = extendTheme({
           fontWeight: "normal",
           color: "gray.400",
         },
+        solid: {
+          bg: "gray.600",
+          color: "gray.300",
+          _hover: {
+            bg: "gray.500",
+          },
+        },
         outline: {
           color: "white",
           _hover: {
@@ -125,6 +132,13 @@ export const theme = extendTheme({
             bg: "gray.600",
             boxShadow: "lg",
           },
+        },
+      },
+    },
+    Drawer: {
+      baseStyle: {
+        dialog: {
+          bg: "gray.900",
         },
       },
     },

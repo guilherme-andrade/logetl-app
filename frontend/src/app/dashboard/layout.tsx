@@ -105,12 +105,12 @@ const Layout: FC<Props> = ({ children }) => {
         <List>
           <ListItem py="3">
             <Link as={NextLink} href="/dashboard/queries">
-              <Icon as={CodePlus} />
+              <Icon w="5" h="5" as={CodePlus} />
             </Link>
           </ListItem>
           <ListItem py="3">
             <Link as={NextLink} href="/dashboard/triggers">
-              <Icon as={TimelineEventPlus} />
+              <Icon w="5" h="5" as={TimelineEventPlus} />
             </Link>
           </ListItem>
         </List>

@@ -10,13 +10,13 @@
     "regex": "GET /api/v1/users/(?<user_id>\\d+) HTTP/(?<http_version>\\d\\.\\d)"
   },
   {
-    "log": "POST /api/v1/service_offfers/1/accept/2 body={\"user_id\": 1}",
-    "properties": ["user_id", "service_offer_id"],
-    "regex": "POST /api/v1/service_offfers/(?<service_offer_id>\\d+)/accept/(?<user_id>\\d+) body={\"user_id\": 1}"
+    "log": "[2020-09-08 19:10:11] INFO: Starting web server request [method: POST, params: {name='John Doe', company='ABC Inc.']",
+    "properties": ["name", "company"],
+    "regex": "\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\] INFO: Starting web server request \\[method: POST, params: {name='(?<name>[^']+)', company='(?<company>[^']+)'\\]"
   },
   {
-    "log": "POST /api/v1/service_offfers/1/accept/2 body={\"user_id\": 1} ip=172.453.232.1 user_agent=Chrome/1.0",
+    "log": "POST /api/v1/service_offfers/1/accept body={\"user_id\": 1} ip=172.453.232.1 user_agent=Chrome/1.0",
     "properties": ["user_id", "service_offer_id", "ip", "user_agent"],
-    "regex": "POST /api/v1/service_offfers/(?<service_offer_id>\\d+)/accept/(?<user_id>\\d+) body={\"user_id\": 1} ip=(?<ip>\\d+\\.\\d+\\.\\d+\\.\\d+) user_agent=(?<user_agent>\\w+\\/\\d\\.\\d)"
+    "regex": "POST /api/v1/service_offfers/(?<service_offer_id>\\d+)/accept body={\"user_id\": (?<user_id>\\d+)} ip=(?<ip>\\d+\\.\\d+\\.\\d+\\.\\d+) user_agent=(?<user_agent>\\w+\\/\\d\\.\\d)"
   }
 ]

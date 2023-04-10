@@ -15,4 +15,14 @@ export type Query = {
   logExample: string;
   createdAt: string;
   updatedAt: string;
+  triggers?: Trigger[];
+};
+
+export type Trigger = {
+  id: string;
+  title: string;
+  queryId: string;
+  extractorRegex: string;
+  createdAt: string;
+  updatedAt: string;
 };
