@@ -14,6 +14,7 @@ import {
   Button,
   HStack,
 } from "@/modules/ui";
+import { Plus } from "@/modules/ui/icons";
 import NextLink from "next/link";
 
 const GRID = "35px 2fr 1fr 1fr 1fr 30px";
@@ -34,20 +35,16 @@ const Page = () => {
   return (
     <Box p="4">
       <Flex justifyContent="space-between" alignItems="center" mb="8">
-        <Box>
-          <Heading size="md" w="fit-content" mb="6" pb="4">
-            Your Queries
-          </Heading>
-        </Box>
+        <Heading size="md" w="fit-content">
+          Your Queries
+        </Heading>
         <HStack spacing="4">
-          <Button size="sm" colorScheme="outline">
-            cona
-          </Button>
           <Button
             size="sm"
             colorScheme="gray.900"
             as={NextLink}
             href="/dashboard/queries/new"
+            leftIcon={<Plus />}
           >
             New Query
           </Button>

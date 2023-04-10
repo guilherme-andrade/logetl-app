@@ -8,7 +8,7 @@ const aiApi = axios.create({
   baseURL: "http://localhost:4000/ai/api",
 });
 
-export const createRegexSelector = ({
+export const createRegexSelectorService = ({
   log,
   logList,
 }: {

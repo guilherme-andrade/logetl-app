@@ -27,10 +27,7 @@ import {
 } from "@/modules/ui";
 import { ChevronDown, ExternalLink, Folder } from "@/modules/ui/icons";
 import NextLink from "next/link";
-import {
-  createRegexSelector as createRegexSelectorService,
-  useMutation as useAiMutation,
-} from "@/modules/ai";
+import { createRegexSelectorService, useAiMutation } from "@/modules/ai";
 import { useRouter } from "next/navigation";
 import { Logfile, Query } from "@/modules/data/types";
 
