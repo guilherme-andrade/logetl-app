@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "@/modules/api";
+import { useQuery } from "@/modules/data";
 import {
   Box,
   Button,
@@ -28,7 +28,7 @@ const Login = () => {
       <Box
         p={{ base: 4, lg: 8 }}
         borderWidth="1px"
-        borderColor="black"
+        borderColor="gray.900"
         rounded="md"
         w="full"
         bg="white"
@@ -52,7 +52,7 @@ const Login = () => {
               <Input type="password" name="password" placeholder="********" />
             </InputGroup>
           </FormControl>
-          <Button w="full" colorScheme="black">
+          <Button w="full" colorScheme="gray.900">
             Submit
           </Button>
           <Box textAlign="left" w="full">

@@ -8,7 +8,7 @@ user = User.create!(first_name: 'John', last_name: 'Doe', email: 'johndoe@exampl
 
 # Role.create!(name: "admin", resource_type: "Member", resource_id: user)
 
-Query.create!(selector_regex: '.*', title: 'All', slug: 'all', account: acme)
+Query.create!(selector_regex: '.*', title: 'All', slug: 'all', account: acme, log_example: 'example log')
 
 Trigger.create!(extractor_regex: '.*', title: 'All', slug: 'all', query_id: Query.first.id, account: acme)
 

@@ -1,5 +1,5 @@
 import { AiProvider } from "@/modules/ai/Provider";
-import { DataProvider } from "@/modules/api/Provider";
+import { DataProvider } from "@/modules/data/Provider";
 import { UIProvider } from "@/modules/ui/Provider";
 
 export const metadata = {

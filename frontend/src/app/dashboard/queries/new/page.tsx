@@ -1,7 +1,7 @@
 "use client";
 import { Fragment, useEffect, useState } from "react";
 
-import { useMutation, useQuery } from "@/modules/api";
+import { useMutation, useQuery } from "@/modules/data";
 import {
   Button,
   Checkbox,
@@ -25,22 +25,14 @@ import {
   ModalOverlay,
   InputRightElement,
 } from "@/modules/ui";
-import { ChevronUp, ExternalLink, Folder } from "@/modules/ui/icons";
+import { ChevronDown, ExternalLink, Folder } from "@/modules/ui/icons";
 import NextLink from "next/link";
 import {
   createRegexSelector as createRegexSelectorService,
   useMutation as useAiMutation,
 } from "@/modules/ai";
-
-interface Logfile {
-  id: string;
-  name: string;
-  content: string;
-  startDate: string;
-  endDate: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { useRouter } from "next/navigation";
+import { Logfile, Query } from "@/modules/data/types";
 
 const Logs = () => {
   const { data, isLoading, error } = useQuery<Logfile[]>("logfiles");
@@ -54,9 +46,10 @@ const Logs = () => {
     } | null>(null);
   const [activeFileMenuOpen, setActiveFileMenuOpen] = useState(false);
   const [selectorRegex, setSelectorRegex] = useState<RegExp | null>(null);
-  const [createQuery] = useMutation("queries", {
+  const [createQuery] = useMutation<Query>("queries", {
     invalidate: ["queries"],
   });
+  const router = useRouter();
 
   const { mutate: createRegexSelector, isLoading: isCreatingSelector } =
     useAiMutation("createRegexSelector", async () => {
@@ -110,14 +103,15 @@ const Logs = () => {
     setQueryTitle(e.target.value);
   };
 
-  const handleSaveQuery = (e) => {
-    e.preventDefault();
-    console.log("saving");
+  const handleSaveQuery = (e?: React.MouseEvent) => {
+    e?.preventDefault();
     createQuery({
       title: queryTitle,
       selectorRegex: selectorRegex?.toString(),
+      logExample: selectorRegexGeneratorPayload?.log,
+    }).then(({ data }) => {
+      router.push(`/dashboard/queries/${data?.id}`);
     });
-    setIsTitleModalOpen(false);
   };
 
   return (
@@ -133,10 +127,10 @@ const Logs = () => {
           <ModalHeader>
             <ModalCloseButton />
             <Text fontSize="lg" mb="2">
-              Set a title for your selector.
+              Set an identifier for your regex.
             </Text>
             <Text color="gray.500" fontSize="md" fontWeight="normal">
-              This will make it possible to use it to create other triggers
+              This will make it possible to use it to create other triggers.
             </Text>
           </ModalHeader>
           <ModalBody>
@@ -182,45 +176,40 @@ const Logs = () => {
         gridTemplateRows="auto 1fr auto"
         h="100%"
         w="100%"
-        gridTemplateAreas={`"header" "main" "input"`}
-        bg="gray.900"
-        color="white"
+        gridTemplateAreas={`"header" "main" "footer"`}
       >
         <GridItem
-          gridArea="header"
+          gridArea="footer"
           p="4"
           pb="2"
           fontSize="sm"
           overflowY="scroll"
-          bg="black"
+          bg="gray.900"
           shadow="lg"
           borderColor="gray.800"
           borderBottomWidth="1px"
         >
           <Heading fontSize="md" mb="1">
-            1. Use regex to select logs.
+            Create a regex to match logs for your query.
+            <Button
+              rightIcon={<Icon as={ExternalLink} w="3" h="3" />}
+              as={NextLink}
+              href="gitbook.io"
+              textDecoration="underline"
+              size="xs"
+              variant="link"
+              ml="2"
+            >
+              Open docs.
+            </Button>
           </Heading>
           <Text color="gray.400" mb="3">
-            Please insert a regex expression in the input below, or select a log
-            from the files displayed below to use AI to automatically generate
-            it.{" "}
-            <Link as={NextLink} href="gitbook.io" textDecoration="underline">
-              Read the docs.
-              <Icon as={ExternalLink} w="4" h="4" />
-            </Link>
+            Please insert a regex expression in the input below, or{" "}
+            <Text as="strong">select a log</Text> from the UI above to generate
+            it using AI.
           </Text>
           <Flex mb="2">
-            <InputGroup
-              size="sm"
-              bg="gray.900"
-              rounded="md"
-              borderColor="gray.800"
-              mr="2"
-              _focus={{
-                borderColor: "white",
-                boxShadow: "none",
-              }}
-            >
+            <InputGroup size="sm" rounded="md" mr="2">
               {isCreatingSelector && (
                 <InputLeftElement pointerEvents="none">
                   <Spinner size="xs" />
@@ -230,6 +219,7 @@ const Logs = () => {
                 disabled={isCreatingSelector}
                 placeholder="Insert your regex here"
                 value={selectorRegex?.toString() || ""}
+                fontFamily="menlo"
                 onChange={(e) => {
                   setSelectorRegex(new RegExp(e.target.value));
                 }}
@@ -237,10 +227,8 @@ const Logs = () => {
             </InputGroup>
             <Button
               size="sm"
-              variant="outline"
-              _hover={{ bg: "gray.700" }}
               onClick={handleContinue}
-              disabled={!selectorRegex}
+              isDisabled={!selectorRegex?.toString()}
             >
               Continue &rarr;
             </Button>
@@ -266,6 +254,7 @@ const Logs = () => {
                       mb="2px"
                       p="1"
                       borderWidth="1px"
+                      fontFamily="menlo"
                       borderColor={
                         log === selectorRegexGeneratorPayload?.log ||
                         matchesSelector(log)
@@ -309,8 +298,8 @@ const Logs = () => {
           </GridItem>
         )}
         <GridItem
-          gridArea="input"
-          bg="black"
+          gridArea="header"
+          bg="gray.900"
           px="2"
           shadow="lg"
           borderTop="1px"
@@ -320,7 +309,7 @@ const Logs = () => {
           {activeFiles && data && (
             <>
               <Button
-                rightIcon={<ChevronUp />}
+                rightIcon={<ChevronDown />}
                 size="xs"
                 variant="unstyled"
                 leftIcon={<Folder />}
@@ -343,7 +332,7 @@ const Logs = () => {
                     color="gray.500"
                   >
                     <Checkbox
-                      colorScheme="black"
+                      colorScheme="gray.900"
                       size="sm"
                       mr="2"
                       isChecked={activeFiles.some((f) => f.id === file.id)}

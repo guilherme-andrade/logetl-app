@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "@/modules/api";
+import { useQuery } from "@/modules/data";
 import {
   Box,
   Grid,

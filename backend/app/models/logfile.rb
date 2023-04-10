@@ -7,5 +7,5 @@ class Logfile < ApplicationRecord
 
   has_one_attached :file
 
-  slug :title
+  slug :name
 end

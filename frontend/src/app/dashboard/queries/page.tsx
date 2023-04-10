@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "@/modules/api";
+import { useQuery } from "@/modules/data";
 import {
   Box,
   Grid,
@@ -13,6 +13,7 @@ import {
   Flex,
   Button,
   HStack,
+  LinkOverlay
 } from "@/modules/ui";
 import NextLink from "next/link";
 
@@ -32,8 +33,8 @@ const Page = () => {
   }
 
   return (
-    <>
-      <Flex justifyContent="space-between" mb="8">
+    <Box p="4">
+      <Flex justifyContent="space-between" alignItems="center" mb="8">
         <Box>
           <Heading size="md" w="fit-content" mb="6" pb="4">
             Your Queries
@@ -45,7 +46,7 @@ const Page = () => {
           </Button>
           <Button
             size="sm"
-            colorScheme="black"
+            colorScheme="gray.900"
             as={NextLink}
             href="/dashboard/queries/new"
           >
@@ -72,19 +73,13 @@ const Page = () => {
         </Grid>
 
         {data?.map((query) => (
-          <Card
-            w="full"
-            key={query.id}
-            borderWidth="1px"
-            borderColor="gray.100"
-            shadow="sm"
-            _hover={{ borderColor: "gray.200", bg: "gray.50" }}
-            transition="all 0.2s"
-          >
+          <Card w="full" key={query.id} shadow="sm" transition="all 0.2s">
             <Grid
+              as={NextLink}
               display="inline-grid"
               gridTemplateColumns={GRID}
               cursor="pointer"
+              href={`/dashboard/queries/${query.id}`}
             >
               <GridItem display="flex" alignItems="center" pl="4">
                 <Box bg="green.300" h="5px" w="5px" rounded="50%" />
@@ -106,7 +101,7 @@ const Page = () => {
           </Card>
         ))}
       </VStack>
-    </>
+    </Box>
   );
 };
 
