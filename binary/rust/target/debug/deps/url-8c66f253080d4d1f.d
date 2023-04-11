@@ -1,0 +1,11 @@
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/debug/deps/url-8c66f253080d4d1f.rmeta: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/host.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/origin.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/parser.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/path_segments.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/slicing.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/quirks.rs
+
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/debug/deps/url-8c66f253080d4d1f.d: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/host.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/origin.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/parser.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/path_segments.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/slicing.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/quirks.rs
+
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/lib.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/host.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/origin.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/parser.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/path_segments.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/slicing.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.3.1/src/quirks.rs:

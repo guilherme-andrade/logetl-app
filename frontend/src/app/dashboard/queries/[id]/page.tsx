@@ -33,7 +33,7 @@ import {
 import { useParams } from "next/navigation";
 import { useQuery } from "@/modules/data";
 import { Query, Trigger } from "@/modules/data/types";
-import { Plus } from "@/modules/ui/icons";
+import { Plus, Save } from "@/modules/ui/icons";
 import { useAiMutation, createRegexExtractorService } from "@/modules/ai";
 import { useMutation } from "@/modules/data";
 
@@ -120,6 +120,15 @@ const Page = () => {
       ...prev,
       properties: prev.properties.filter((p) => p !== property),
     }));
+  };
+
+  const handleSaveTrigger = async () => {
+    try {
+      await createTrigger(newTrigger);
+      handleToggleNewTriggerModal();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   let regex = new RegExp("/.+/");
@@ -285,9 +294,10 @@ const Page = () => {
               colorScheme="blue"
               size="sm"
               isLoading={isCreatingTrigger}
-              onClick={() => createTrigger(newTrigger)}
+              onClick={handleSaveTrigger}
+              leftIcon={<Save />}
             >
-              Continue &rarr;
+              Save
             </Button>
           </DrawerFooter>
         </DrawerContent>

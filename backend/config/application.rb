@@ -22,6 +22,16 @@ module LogetlApp
     config.generators.system_tests = nil
     config.generators { |g| g.orm :active_record, primary_key_type: :uuid }
 
+    config.lograge.enabled = true
+
+    config.lograge.custom_options = lambda do |event|
+      exceptions = %w[controller action format id]
+      {
+        params: event.payload[:params].except(*exceptions),
+        time: event.time
+      }
+    end
+
     excluded_routes = ->(env) { !env['PATH_INFO'].match(/api/) }
     config.middleware.use OliveBranch::Middleware,
                           inflection: 'camel',
