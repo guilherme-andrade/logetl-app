@@ -1,0 +1,10 @@
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/debug/deps/resolv_conf-76715275bd4dfcbe.rmeta: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/grammar.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/ip.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/config.rs
+
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/debug/deps/libresolv_conf-76715275bd4dfcbe.rlib: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/grammar.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/ip.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/config.rs
+
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/debug/deps/resolv_conf-76715275bd4dfcbe.d: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/grammar.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/ip.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/config.rs
+
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/lib.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/grammar.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/ip.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/config.rs:

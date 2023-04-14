@@ -1,0 +1,10 @@
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/release/deps/resolv_conf-e89f2ea8ccc2875e.rmeta: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/grammar.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/ip.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/config.rs
+
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/release/deps/libresolv_conf-e89f2ea8ccc2875e.rlib: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/grammar.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/ip.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/config.rs
+
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/release/deps/resolv_conf-e89f2ea8ccc2875e.d: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/grammar.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/ip.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/config.rs
+
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/lib.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/grammar.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/ip.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/resolv-conf-0.7.0/src/config.rs:

@@ -1,0 +1,10 @@
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/release/deps/idna-a8b3b82bdca2a5fb.rmeta: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/punycode.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/uts46.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/uts46_mapping_table.rs
+
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/release/deps/libidna-a8b3b82bdca2a5fb.rlib: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/punycode.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/uts46.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/uts46_mapping_table.rs
+
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/release/deps/idna-a8b3b82bdca2a5fb.d: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/punycode.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/uts46.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/uts46_mapping_table.rs
+
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/lib.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/punycode.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/uts46.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/idna-0.3.0/src/uts46_mapping_table.rs:

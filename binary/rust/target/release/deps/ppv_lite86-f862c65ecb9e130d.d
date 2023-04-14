@@ -1,0 +1,10 @@
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/release/deps/ppv_lite86-f862c65ecb9e130d.rmeta: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/soft.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/types.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/generic.rs
+
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/release/deps/libppv_lite86-f862c65ecb9e130d.rlib: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/soft.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/types.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/generic.rs
+
+/Users/guilherme-andrade/code/guilherme-andrade/projects/logetl-app/binary/rust/target/release/deps/ppv_lite86-f862c65ecb9e130d.d: /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/lib.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/soft.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/types.rs /Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/generic.rs
+
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/lib.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/soft.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/types.rs:
+/Users/guilherme-andrade/.cargo/registry/src/github.com-1ecc6299db9ec823/ppv-lite86-0.2.17/src/generic.rs:
