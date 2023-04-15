@@ -8,16 +8,51 @@ use reqwest;
 use regex::Regex;
 use serde_json::{Map, Value};
 use dotenv::dotenv;
-
+use std::net::{Ipv4Addr, SocketAddr, SocketAddrV4};
 
 extern crate serde;
 #[macro_use] extern crate serde_derive;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 struct Query {
-    #[serde(rename(deserialize = "selectorRegex"))]
-    selector_regex: String,
-    url: String,
+    id: String,
+    #[serde(rename = "type")]
+    query_type: String,
+    links: Links,
+    attributes: Attributes,
+    relationships: Relationships,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+struct Links {
+    #[serde(alias = "self")]
+    self_link: String,
+    related: Option<String>,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+struct Attributes {
+    title: String,
+    selectorRegex: String,
+    logExample: String,
+    slug: String,
+    createdAt: String,
+    updatedAt: String,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+struct Triggers {
+    links: Links,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+struct Relationships {
+    triggers: Triggers,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+struct QueryResponse {
+    data: Vec<Query>,
 }
 
 
@@ -74,7 +109,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             last_line = line.to_string();
 
             for query in &queries {
-                let re = Regex::new(&query.selector_regex)?;
+                let re = Regex::new(&query.attributes.selectorRegex)?;
 
                 if re.is_match(&last_line) {
                     let client = create_client()?;
@@ -84,7 +119,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     let body = serde_json::to_string(&body_map).unwrap();
 
 
-                    let request = client.post(&query.url)
+                    let request = client.post(format!("{}/api/queries/{}", api_url, query.id))
                         .header("Authorization", &authorization)
                         .body(body.clone());
 
@@ -101,19 +136,28 @@ fn exit_with_error(error: &str) -> String {
     process::exit(1);
 }
 
+
+
 fn get_queries(api_url: &str, authorization: &str) -> Result<Vec<Query>, Box<dyn std::error::Error>> {
     let client = create_client()?;
     let response = client.get(api_url)
         .header("Authorization", authorization)
         .send()?;
-    let queries = response.json()?;
+    eprintln!("wtf1");
+    let queries_text = response.text()?;
+    let queries_response = serde_json::from_str::<QueryResponse>(&queries_text).unwrap();
 
-    Ok(queries)
+    Ok(queries_response.data)
 }
 
 fn create_client() -> Result<Client, Box<dyn std::error::Error>> {
     let api_host = get_api_host();
-    let client = ClientBuilder::new().gzip(true).resolve(&api_host, system_dns_resolver(&api_host)?).build()?;
+    let addr = SocketAddr::V4(SocketAddrV4::new(Ipv4Addr::new(127, 0, 0, 1), 4000));
+    let client = ClientBuilder::new()
+        .gzip(true)
+        .trust_dns(false)
+        .resolve(&api_host, addr)
+        .build()?;
 
     Ok(client)
 }
@@ -131,9 +175,4 @@ fn make_api_call(request: RequestBuilder) -> Result<(), Box<dyn std::error::Erro
     }
 
     Ok(())
-}
-
-fn system_dns_resolver(host: &str) -> Result<std::net::SocketAddr, std::io::Error> {
-    let host_port = (host, 80).to_socket_addrs()?.next().unwrap();
-    Ok(host_port)
 }

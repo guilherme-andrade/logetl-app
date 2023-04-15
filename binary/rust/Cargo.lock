@@ -67,11 +67,13 @@ dependencies = [
  "dotenv",
  "redis",
  "regex",
+ "regex-syntax",
  "reqwest",
  "serde",
  "serde_derive",
  "serde_json",
  "trust-dns-resolver",
+ "url",
 ]
 
 [[package]]
