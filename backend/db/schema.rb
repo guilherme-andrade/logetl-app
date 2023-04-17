@@ -148,6 +148,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_17_070611) do
     t.string "slug", null: false
     t.uuid "query_id", null: false
     t.uuid "account_id", null: false
+    t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_triggers_on_account_id"

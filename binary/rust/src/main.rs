@@ -10,6 +10,12 @@ use dotenv::dotenv;
 use std::net::{Ipv4Addr, SocketAddr, SocketAddrV4};
 use fancy_regex::Regex;
 
+mod lib {
+    pub mod process_spawner;
+}
+
+use lib::process_spawner::spawn_process;
+
 extern crate serde;
 #[macro_use] extern crate serde_derive;
 
@@ -20,7 +26,7 @@ struct Query {
     query_type: String,
     links: Links,
     attributes: Attributes,
-    relationships: Relationships,
+    relationships: Option<Relationships>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -60,42 +66,41 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
 
     let args: Vec<String> = env::args().collect();
-
-    if args.len() < 2 {
-        exit_with_error("missing argument for logfile");
-    }
-
-    let log_file_path = &args[1];
+    let mut cmd = spawn_process(&args)?;
 
     let redis_url = env::var("REDIS_URL").unwrap_or_else(|_| "redis://127.0.0.1/".to_string());
 
     let api_host = get_api_host();
 
     let queries = get_queries()?;
+    println!("{:?}", args.get(2));
 
-    let log_file = File::open(log_file_path)?;
-    let mut log_reader = BufReader::new(log_file);
     let mut last_line = String::new();
+    println!("{:?}", args.get(2));
 
     let client = redis::Client::open(redis_url)?;
     let mut con = client.get_connection()?;
 
-    if let Ok(line) = con.get::<_, String>("logetl:last_processed_line") {
-        if let Ok(num) = line.parse::<usize>() {
-            log_reader.seek(SeekFrom::Start(num as u64))?;
-        }
+    if let Ok(redis::Value::Data(_)) = con.get::<&str, redis::Value>("logetl:last_processed_line") {
+        last_line = con.get("logetl:last_processed_line")?;
     }
 
     loop {
-        let mut tail_cmd = process::Command::new("tail");
-        tail_cmd.args(&["-f", log_file_path]);
-        let tail_child = tail_cmd.stdout(process::Stdio::piped()).spawn().unwrap();
+
+        let tail_child = cmd.stdout(process::Stdio::piped()).spawn().unwrap();
         let reader = BufReader::new(tail_child.stdout.unwrap());
+        let mut last_line_read = false;
 
         for line in reader.lines() {
             let line = line.unwrap();
 
-            if line.to_string() == last_line {
+
+            if line == last_line {
+                last_line_read = true;
+                continue;
+            }
+
+            if !last_line_read {
                 continue;
             }
 
@@ -135,7 +140,6 @@ fn get_queries() -> Result<Vec<Query>, Box<dyn std::error::Error>> {
 
     let response = client.get(queries_url)
         .send()?;
-    eprintln!("wtf1");
     let queries_text = response.text()?;
     let queries_response = serde_json::from_str::<QueryResponse>(&queries_text).unwrap();
 

@@ -8,9 +8,9 @@ user = User.create!(first_name: 'John', last_name: 'Doe', email: 'johndoe@exampl
 
 # Role.create!(name: "admin", resource_type: "Member", resource_id: user)
 
-Query.create!(selector_regex: '.*', title: 'All', slug: 'all', account: acme, log_example: 'example log')
+Query.create!(selector_regex: 'test', title: 'All', slug: 'all', account: acme, log_example: 'example log')
 
-Trigger.create!(extractor_regex: '.*', title: 'All', slug: 'all', query_id: Query.first.id, account: acme)
+Trigger.create!(extractor_regex: 'test', title: 'All', slug: 'all', query_id: Query.first.id, account: acme)
 
 Dir[Rails.root.join('data/fake_logs/*.txt')].each do |file|
   logfile = Logfile.create!(start_date: 1.day.ago.beginning_of_day, end_date: Time.zone.today, name: file,

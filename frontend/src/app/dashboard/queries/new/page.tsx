@@ -78,13 +78,14 @@ const Logs = () => {
 
   if (isLoading || error) return <div>Loading...</div>;
 
-  const handleSelectFile = (file: Logfile) => (e: React.ChangeEvent) => {
-    if (!e.target.checked) {
-      setActiveFile((prev) => prev.filter((f) => f.id !== file.id));
-    } else {
-      setActiveFile((prev) => [...prev, file]);
-    }
-  };
+  const handleSelectFile =
+    (file: Logfile) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!e.target.checked) {
+        setActiveFile((prev) => prev.filter((f) => f.id !== file.id));
+      } else {
+        setActiveFile((prev) => [...prev, file]);
+      }
+    };
 
   const matchesSelector = (log: string) => {
     if (!selectorRegex) return false;
