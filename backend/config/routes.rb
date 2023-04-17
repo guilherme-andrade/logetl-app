@@ -7,9 +7,13 @@ Rails.application.routes.draw do
     jsonapi_resources :accounts
     jsonapi_resources :members
     jsonapi_resources :users
-    jsonapi_resources :queries
     jsonapi_resources :logfiles
     jsonapi_resources :triggers
+    jsonapi_resources :queries do
+      scope module: 'queries' do
+        jsonapi_resources :matches, only: %i[create]
+      end
+    end
   end
 
   namespace :ai, defaults: { format: :json } do

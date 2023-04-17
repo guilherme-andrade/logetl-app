@@ -1,14 +1,14 @@
 use std::{env, process};
-use std::net::ToSocketAddrs;
 use std::fs::{File};
 use std::io::{BufRead, BufReader, Seek, SeekFrom};
 use redis::Commands;
 use reqwest::blocking::{Client, RequestBuilder, ClientBuilder};
+use reqwest::header::{self, AUTHORIZATION};
 use reqwest;
-use regex::Regex;
 use serde_json::{Map, Value};
 use dotenv::dotenv;
 use std::net::{Ipv4Addr, SocketAddr, SocketAddrV4};
+use fancy_regex::Regex;
 
 extern crate serde;
 #[macro_use] extern crate serde_derive;
@@ -67,18 +67,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let log_file_path = &args[1];
 
-
-
-    let authorization = env::var("LOGETL_API_TOKEN").unwrap_or_else(|_| {
-        exit_with_error("LOGETL_API_TOKEN is not set")
-    });
-
     let redis_url = env::var("REDIS_URL").unwrap_or_else(|_| "redis://127.0.0.1/".to_string());
 
     let api_host = get_api_host();
-    let api_url = format!("{}/api/queries", api_host);
 
-    let queries = get_queries(&api_url, &authorization)?;
+    let queries = get_queries()?;
 
     let log_file = File::open(log_file_path)?;
     let mut log_reader = BufReader::new(log_file);
@@ -111,16 +104,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             for query in &queries {
                 let re = Regex::new(&query.attributes.selectorRegex)?;
 
-                if re.is_match(&last_line) {
+                if re.is_match(&last_line)? {
                     let client = create_client()?;
 
                     let mut body_map = Map::new();
                     body_map.insert(String::from("log"), Value::String(last_line.clone()));
                     let body = serde_json::to_string(&body_map).unwrap();
-
-
-                    let request = client.post(format!("{}/api/queries/{}", api_url, query.id))
-                        .header("Authorization", &authorization)
+                    let request = client.post(format!("{}/api/queries/{}/matches", api_host, query.id))
                         .body(body.clone());
 
                     make_api_call(request)?;
@@ -138,10 +128,12 @@ fn exit_with_error(error: &str) -> String {
 
 
 
-fn get_queries(api_url: &str, authorization: &str) -> Result<Vec<Query>, Box<dyn std::error::Error>> {
+fn get_queries() -> Result<Vec<Query>, Box<dyn std::error::Error>> {
     let client = create_client()?;
-    let response = client.get(api_url)
-        .header("Authorization", authorization)
+    let api_host = get_api_host();
+    let queries_url = format!("{}/api/queries", api_host);
+
+    let response = client.get(queries_url)
         .send()?;
     eprintln!("wtf1");
     let queries_text = response.text()?;
@@ -151,12 +143,18 @@ fn get_queries(api_url: &str, authorization: &str) -> Result<Vec<Query>, Box<dyn
 }
 
 fn create_client() -> Result<Client, Box<dyn std::error::Error>> {
+    let authorization = env::var("LOGETL_API_TOKEN").unwrap_or_else(|_| {
+        exit_with_error("LOGETL_API_TOKEN is not set")
+    });
+    let mut headers = header::HeaderMap::new();
+    headers.insert(AUTHORIZATION, reqwest::header::HeaderValue::from_str(&authorization)?);
     let api_host = get_api_host();
     let addr = SocketAddr::V4(SocketAddrV4::new(Ipv4Addr::new(127, 0, 0, 1), 4000));
     let client = ClientBuilder::new()
         .gzip(true)
         .trust_dns(false)
         .resolve(&api_host, addr)
+        .default_headers(headers)
         .build()?;
 
     Ok(client)
