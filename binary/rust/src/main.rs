@@ -3,7 +3,7 @@ use fancy_regex::Regex;
 use redis::Commands;
 use reqwest;
 use reqwest::blocking::{Client, ClientBuilder, RequestBuilder};
-use reqwest::header::{self, AUTHORIZATION};
+use reqwest::header::{self, AUTHORIZATION, CONTENT_TYPE, ACCEPT};
 use serde_json::{Map, Value};
 use std::io::{BufRead, BufReader};
 use std::net::{Ipv4Addr, SocketAddr, SocketAddrV4};
@@ -31,8 +31,8 @@ struct Query {
 
 #[derive(Debug, Deserialize, Serialize)]
 struct Links {
-    #[serde(alias = "self")]
-    self_link: String,
+    #[serde(rename = "self")]
+    self_link: Option<String>,
     related: Option<String>,
 }
 
@@ -72,10 +72,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let api_host = get_api_host();
 
     let queries = get_queries()?;
-    println!("{:?}", args.get(2));
 
     let mut last_line = String::new();
-    println!("{:?}", args.get(2));
 
     let client = redis::Client::open(redis_url)?;
     let mut con = client.get_connection()?;
@@ -87,37 +85,32 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     loop {
         let tail_child = cmd.stdout(process::Stdio::piped()).spawn().unwrap();
         let reader = BufReader::new(tail_child.stdout.unwrap());
-        let mut last_line_read = false;
 
         for line in reader.lines() {
-            let line = line.unwrap();
-
-            eprintln!("log: {}", line);
-            eprintln!("last line: {}", last_line);
-            eprintln!("last line read: {}", line == last_line);
-
-            if line == last_line {
-                last_line_read = true;
-                continue;
-            }
-
-            if !last_line_read {
-                continue;
-            }
+            let line = remove_formatting_tags(&line.unwrap());
 
             last_line = line.to_string();
 
             for query in &queries {
-                let re = Regex::new(&query.attributes.selectorRegex)?;
-                eprintln!("{}", query.attributes.selectorRegex);
+                let mut regex_string = query.attributes.selectorRegex.clone();
+                regex_string.remove(0);
+                regex_string.remove(regex_string.len() - 1);
+
+                let re = Regex::new(&regex_string)?;
 
                 if re.is_match(&last_line)? {
                     let client = create_client()?;
                     let mut body_map = Map::new();
-                    body_map.insert(String::from("log"), Value::String(last_line.clone()));
+                    let mut data = Map::new();
+                    let mut attributes  = Map::new();
+                    attributes.insert(String::from("queryId"), Value::String(query.id.clone()));
+                    attributes.insert(String::from("log"), Value::String(last_line.clone()));
+                    data.insert(String::from("attributes"), Value::Object(attributes));
+                    data.insert(String::from("type"), Value::String(String::from("matches")));
+                    body_map.insert(String::from("data"), Value::Object(data));
                     let body = serde_json::to_string(&body_map).unwrap();
                     let request = client
-                        .post(format!("{}/api/queries/{}/matches", api_host, query.id))
+                        .post(format!("{}/api/matches", api_host))
                         .body(body.clone());
 
                     make_api_call(request)?;
@@ -126,6 +119,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
         con.set("logetl:last_processed_line", &last_line)?;
     }
+}
+
+fn remove_formatting_tags(input_str: &str) -> String {
+    let re = Regex::new("\u{001B}\\[(\\d{1,2}(;\\d{1,2})?)?[m|K]").unwrap();
+    re.replace_all(input_str, "").to_string()
 }
 
 fn exit_with_error(error: &str) -> String {
@@ -151,6 +149,10 @@ fn create_client() -> Result<Client, Box<dyn std::error::Error>> {
     headers.insert(
         AUTHORIZATION,
         reqwest::header::HeaderValue::from_str(&authorization)?,
+    );
+    headers.insert(
+        CONTENT_TYPE,
+        reqwest::header::HeaderValue::from_static("application/vnd.api+json")
     );
     let api_host = get_api_host();
     let addr = SocketAddr::V4(SocketAddrV4::new(Ipv4Addr::new(127, 0, 0, 1), 4000));

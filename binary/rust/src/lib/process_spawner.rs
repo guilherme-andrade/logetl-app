@@ -13,7 +13,7 @@ pub fn spawn_process(args: &[String]) -> Result<Command, Box<dyn Error>> {
       Some(arg) if arg == "--file" => {
           let file_arg = args.get(2).expect("Missing file argument");
           let mut cmd = Command::new("tail");
-          cmd.arg("-f").arg(file_arg);
+          cmd.arg("-n").arg("100000").arg("-f").arg(file_arg);
           cmd
       }
       _ => {
