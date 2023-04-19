@@ -14,7 +14,7 @@ module Users
         token_generator = JWTGenerator.new
         token = token_generator.encode(user_id: user.id)
 
-        Success(user:, token:)
+        Success({ user: user, token: token })
       else
         Failure(:invalid_credentials)
       end

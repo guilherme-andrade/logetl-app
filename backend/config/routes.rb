@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
-    resources :sessions, only: %i[create]
+    resources :sessions, only: %i[create], path: 'login'
 
     jsonapi_resources :accounts
     jsonapi_resources :members

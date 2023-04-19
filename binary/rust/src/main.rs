@@ -3,7 +3,7 @@ use fancy_regex::Regex;
 use redis::Commands;
 use reqwest;
 use reqwest::blocking::{Client, ClientBuilder, RequestBuilder};
-use reqwest::header::{self, AUTHORIZATION, CONTENT_TYPE, ACCEPT};
+use reqwest::header::{self, AUTHORIZATION, CONTENT_TYPE};
 use serde_json::{Map, Value};
 use std::io::{BufRead, BufReader};
 use std::net::{Ipv4Addr, SocketAddr, SocketAddrV4};
@@ -11,6 +11,20 @@ use std::{env, process};
 
 mod lib {
     pub mod process_spawner;
+}
+
+mod app {
+    mod api {
+
+    }
+
+    mod models {
+
+    }
+
+    mod services {
+
+    }
 }
 
 use lib::process_spawner::spawn_process;
@@ -87,9 +101,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let reader = BufReader::new(tail_child.stdout.unwrap());
 
         for line in reader.lines() {
-            let line = remove_formatting_tags(&line.unwrap());
+            let formatted_line = remove_formatting_tags(&line.unwrap());
 
-            last_line = line.to_string();
+            last_line = formatted_line.to_string();
 
             for query in &queries {
                 let mut regex_string = query.attributes.selectorRegex.clone();
@@ -97,7 +111,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 regex_string.remove(regex_string.len() - 1);
 
                 let re = Regex::new(&regex_string)?;
-
+                eprintln!("{:}")
                 if re.is_match(&last_line)? {
                     let client = create_client()?;
                     let mut body_map = Map::new();

@@ -1,7 +1,6 @@
 use std::process::{Command, Stdio};
 use std::error::Error;
 
-
 pub fn spawn_process(args: &[String]) -> Result<Command, Box<dyn Error>> {
   let cmd = match args.get(1) {
       Some(arg) if arg == "--container" => {

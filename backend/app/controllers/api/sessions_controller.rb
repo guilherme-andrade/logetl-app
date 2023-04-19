@@ -4,8 +4,8 @@ module API
   class SessionsController < BaseController
     def create
       resolve('users.authenticate').call(params) do |m|
-        m.success do |user:, token:|
-          render json: { user:, token: }, status: :created
+        m.success do |payload|
+          render json: payload, status: :created
         end
 
         m.failure :invalid_credentials do

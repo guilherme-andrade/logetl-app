@@ -15,15 +15,10 @@ module API
     def current_user
       return @current_user if defined?(@current_user)
 
-      resolve('users.verify_token').call(token: request.headers['Authorization']) do |m|
-        m.success do |user:|
-          @current_user = user
-        end
+      result = resolve('users.verify_token').call(token: request.headers['Authorization'])
+      return if result.failure?
 
-        m.failure do
-          @current_user = nil
-        end
-      end
+      @current_user = result.value!
     end
   end
 end
